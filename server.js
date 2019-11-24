@@ -5,6 +5,8 @@ const app = express()
 
 const apiKey = 'b6907d289e10d714a6e88b30761fae22';
 
+const port = process.env.PORT || 3000
+
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: true }));
 app.set('view engine', 'ejs')
@@ -26,13 +28,13 @@ app.post('/', function (req, res) {
         res.render('index', {weather: null, error: 'Error, please try again'});
       } else {
         let weatherText = `It's ${weather.main.temp} degrees in ${weather.name}!`;
-        console.log`"Weather " + ${weather.}`;
+    
         res.render('index', {weather: weatherText, error: null});
       }
     }
   });
 })
 
-app.listen(3000, function () {
-  console.log('Example app listening on port 3000!')
+app.listen(port, function () {
+  console.log('App listening on port!' + port)
 })
